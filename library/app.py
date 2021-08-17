@@ -23,8 +23,8 @@ def home():
 def main():
     return render_template('main.html')
 
-@app.route("/signin", methods=['GET', 'POST'])
-def signin():
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         user = User.query.filter_by(id=request.form['id']).first()
         if not user:
@@ -50,7 +50,7 @@ def signin():
         else:
             return "이미 가입된 아이디입니다."
     else:
-        return render_template("signin.html")
+        return render_template("signup.html")
 
 
 
