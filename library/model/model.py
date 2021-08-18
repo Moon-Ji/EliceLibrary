@@ -26,3 +26,4 @@ class Book(db.Model):
     image_path = db.Column(db.String(255))
     stock = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer)
+    

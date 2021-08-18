@@ -36,3 +36,4 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
         db.session.add(book)
 
     db.session.commit()
+
