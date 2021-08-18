@@ -12,12 +12,13 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
     for row in reader:
         publication_date = datetime.strptime(
 			row['publication_date'], '%Y-%m-%d').date()
-        image_path = f"../static/image/book_img/{row['id']}"
+        image_path = f"static/image/book_img/{row['id']}"
         try:
             open(f'library/{image_path}.png')
-            image_path += '.png'
+            image_path = f"../static/image/book_img/{row['id']}.png"
         except:
-            image_path += '.jpg'
+            image_path = f"../static/image/book_img/{row['id']}.jpg"
+
 
         book = Book(
             id=int(row['id']), 
