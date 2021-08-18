@@ -3,15 +3,16 @@
 {% block title %}메인 페이지{% endblock %}
 
 {% block page_content %}
-<table>
-    {% for book in books %}
-        <tr>
-            <img src="{{ url_for('static', filename='image/book_img/1.png') }}" alt='book_image'>
-            <td>{{ book.book_name }}</td>
-            <td>{{ book.rating }}</td>
-            <td>{{ book.stock }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class='bookcard-container'>
+        {% for book in books %}
+            <div class="book-card">
+                <img class="book-image" src="{{ book.image_path }}" alt='book_image'>
+                <p>{{ book.book_name }}</p>
+                <p>{{ book.rating }}</p>
+                <p>{{ book.stock }}권 남음</p>
+                <button>대여하기</button>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
