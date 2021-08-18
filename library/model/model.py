@@ -23,5 +23,6 @@ class Book(db.Model):
     isbn = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String())
     link = db.Column(db.String(255))
+    image_path = db.Column(db.String(255))
     stock = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer)

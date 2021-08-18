@@ -12,7 +12,7 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
     for row in reader:
         publication_date = datetime.strptime(
 			row['publication_date'], '%Y-%m-%d').date()
-        image_path = f"static/image/book_img/{row['id']}"
+        image_path = f"../static/image/book_img/{row['id']}"
         try:
             open(f'library/{image_path}.png')
             image_path += '.png'
@@ -21,7 +21,7 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
 
         book = Book(
             id=int(row['id']), 
-			name=row['book_name'], 
+			book_name=row['book_name'], 
 			publisher=row['publisher'],
             author=row['author'], 
 			publication_date=publication_date, 
