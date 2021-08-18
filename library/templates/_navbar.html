@@ -1,0 +1,15 @@
+<nav>
+    <div>
+        <a href="{{ url_for('main') }}">레이서 도서관</a>
+
+        <div>
+            <a>대여기록</a>
+            <a>반납하기</a>
+            {% if session['id'] %}
+                <a href="logout">로그아웃</a>
+            {% else %}
+                <a href="login">로그인</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

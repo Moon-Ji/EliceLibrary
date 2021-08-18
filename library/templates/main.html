@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href= "login">로그인창으로</a><br>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}메인 페이지{% endblock %}
+
+{% block page_content %}
+<table>
+    {% for book in books %}
+        <tr>
+            <img src="{{ url_for('static', filename='image/book_img/1.png') }}" alt='book_image'>
+            <td>{{ book.book_name }}</td>
+            <td>{{ book.rating }}</td>
+            <td>{{ book.stock }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

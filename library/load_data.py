@@ -6,15 +6,15 @@ from model.model import Book
 
 session = db.session
 
-with open('library.csv', 'r') as f:
+with open('library.csv', 'r', encoding='UTF-8') as f:
     reader = csv.DictReader(f)
 
     for row in reader:
-        published_at = datetime.strptime(
-						row['publication_date'], '%Y-%m-%d').date()
-        image_path = f"/static/image/{row['id']}"
+        publication_date = datetime.strptime(
+			row['publication_date'], '%Y-%m-%d').date()
+        image_path = f"static/image/book_img/{row['id']}"
         try:
-            open(f'app/{image_path}.png')
+            open(f'library/{image_path}.png')
             image_path += '.png'
         except:
             image_path += '.jpg'
@@ -24,13 +24,14 @@ with open('library.csv', 'r') as f:
 			name=row['book_name'], 
 			publisher=row['publisher'],
             author=row['author'], 
-			published_at=published_at, 
-			page_count=int(row['pages']),
+			publication_date=publication_date, 
+			pages=int(row['pages']),
             isbn=row['isbn'], 
 			description=row['description'], 
+            link=row['link'],
 			image_path=image_path,
             stock=5,
-			rating=0,
+            rating=0
         )
         db.session.add(book)
 
