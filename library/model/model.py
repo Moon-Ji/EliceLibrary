@@ -14,7 +14,7 @@ class User(db.Model):
 class Book(db.Model):
     __tablename__ = "Book"
 
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     book_name = db.Column(db.String(255), nullable=False)
     publisher = db.Column(db.String(255), nullable=False)
     author = db.Column(db.String(255), nullable=False)
@@ -27,3 +27,12 @@ class Book(db.Model):
     stock = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer)
     
+class Review(db.Model):
+    __tablename__ = 'Review'
+
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    book_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.String(255), nullable=False)
+    rating = db.Column(db.Integer)
+    content = db.Column(db.Text())
+    post_date = db.Column(db.String())

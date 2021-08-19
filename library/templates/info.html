@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}책 정보{% endblock %}
+
+{% block page_content %}
+    {% if book %}
+    <div>
+        <img class="book-image" src="{{ book.image_path }}" alt='book_image'>
+        <div>
+            <p>책 이름: {{ book.book_name }}</p>
+            <p>출판사: {{ book.publisher }}</p>
+            <p>저자: {{ book.author }}</p>
+            <p>출간일: {{ book.publication_date }}</p>
+            <p>페이지 수: {{ book.pages }}</p>
+            <p>ISBN 코드: {{ book.isbn }}</p>
+        </div>
+
+        <div>
+            <p>책 소개: {{ book.description }}</p>
+
+        </div>
+
+        <div>
+            <p>댓글</p>
+            {% for review in reviews %}
+                <p> {{ review.user_id }}</p>
+                <p> {{ review.content }}</p>
+                <p> {{ review.rating }}</p>
+                <span class="star-rating">
+                    <span></span>
+                </span>
+            {% endfor %}
+            <p></p>
+        </div>
+
+        {% if session['id'] %} 
+            <form method="post">
+                <select name="star">
+                    <option value="1">1점</option>
+                    <option value="2">2점</option>
+                    <option value="3">3점</option>
+                    <option value="4">4점</option>
+                    <option value="5" selected>5점</option>
+                </select>
+                <input placeholder="댓글 달기" name="review"/>
+                <input type="submit" value="작성하기" >
+            </form>
+        {% endif %}
+    </div>
+    
+    
+
+
+    {% endif %}
+
+{% endblock %}
