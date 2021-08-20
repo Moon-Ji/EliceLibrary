@@ -6,11 +6,19 @@
     <div class='bookcard-container'>
         {% for book in books %}
             <div class="book-card">
-                <img class="book-image" src="{{ book.image_path }}" alt='book_image'>
+                <a href="/book_info/{{ book.id }}">
+                    <img class="book-image" 
+                        src="{{ book.image_path }}" 
+                        alt='book_image' 
+                    >
+                </a>
+                
                 <p>{{ book.book_name }}</p>
                 <p>{{ book.rating }}</p>
                 <p>{{ book.stock }}권 남음</p>
-                <button>대여하기</button>
+                <a href="{{ url_for('rent_book', book_id=book.id) }}">
+                    <button >대여하기</button>
+                </a>
             </div>
         {% endfor %}
     </div>

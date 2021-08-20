@@ -32,7 +32,16 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     book_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.String(50), nullable=False)
     rating = db.Column(db.Integer)
     content = db.Column(db.Text())
-    post_date = db.Column(db.String())
+    post_date = db.Column(db.String(50))
+
+class RentalInfo(db.Model):
+    __tablename__ = 'RentalInfo'
+
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    book_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.String(50), nullable=False)
+    start_date = db.Column(db.String(50), nullable=False)
+    end_date = db.Column(db.String(50))

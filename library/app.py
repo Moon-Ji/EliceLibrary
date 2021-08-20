@@ -34,23 +34,63 @@ def book_info(book_id):
         return render_template('info.html', book=book, reviews=book_reviews)
         
     elif request.method == 'POST':
-        user_id = session['id']
-        rating = int(request.form['star'])
-        content = request.form['review']
 
         review = Review(
-            id=2,
             book_id=book_id, 
-            user_id=user_id, 
-            rating=rating, 
-            content=content, 
+            user_id=session['id'], 
+            rating=int(request.form['star']), 
+            content=request.form['content'], 
             post_date=datetime.now()
         )
-        db.session(review)
+        db.session.add(review)
         db.session.commit()
         flash("리뷰가 성공적으로 작성되었습니다.")
-        return redirect('/book_info/<int:book_id>')
+        return redirect('/book_info/'+ str(book_id))
 
+# 책 대여
+@app.route('/rent_book/<int:book_id>')
+def rent_book(book_id):
+    book = db.session.query(Book).filter(Book.id == book_id).first()
+    
+    if book.stock < 1:
+        return "재고가 부족합니다."
+    else:
+        book.stock -= 1
+        db.session.commit()
+
+        rental_info = RentalInfo(
+            book_id=book_id, 
+            user_id=session['id'],
+            start_date=datetime.now()
+            )
+        db.session.add(rental_info)
+        db.session.commit()
+        return redirect('/')
+
+# 책 반납하기 페이지(빌린 책 리스트)
+@app.route('/rent_book_list')
+def rent_book_list():
+    user_id = session['id']
+    rental_info = RentalInfo.query.filter_by(user_id=user_id).all()
+
+    books = []
+    for info in rental_info:
+        book = Book.query.filter_by(id=info.book_id).all()
+        books += book
+    return render_template("return.html", books=books, rental_info=rental_info, zip=zip)
+
+# 책 반납
+@app.route('/return_book/<int:book_id>/<int:info_id>')
+def return_book(book_id, info_id):
+    info = db.session.query(RentalInfo).filter(RentalInfo.id == info_id).first()
+    book = db.session.query(Book).filter(Book.id == book_id).first()
+
+    info.end_date = datetime.now()
+    book.stock += 1
+
+    db.session.commit()
+
+    return redirect('/rent_book_list')
 
 # 회원가입
 @app.route("/signup", methods=['GET', 'POST'])
