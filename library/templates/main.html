@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}메인 페이지{% endblock %}
+
+{% block page_content %}
+    <div class='bookcard-container'>
+        {% for book in books %}
+            <div class="book-card">
+                <a href="/book_info/{{ book.id }}">
+                    <img class="book-image" 
+                        src="{{ book.image_path }}" 
+                        alt='book_image' 
+                    >
+                </a>
+                
+                <p>{{ book.book_name }}</p>
+                <p>{{ book.rating }}</p>
+                <p>{{ book.stock }}권 남음</p>
+                <a href="{{ url_for('rent_book', book_id=book.id) }}">
+                    <button >대여하기</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

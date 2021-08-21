@@ -1,0 +1,62 @@
+.navbar {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(237, 240, 241);
+    margin-bottom: 10px;
+    border: 2px solid rgb(130, 136, 139);
+}
+
+.navbar-container {
+    display: inline;
+}
+
+.nav-menu {
+    float: right;
+}
+
+.book-card {
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 50px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    width: 296px;
+    height: 407px;
+    text-align: center;
+}
+
+.book-card p {
+    font-size: 15px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+.book-image {
+    width: 200px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.bookcard-container {
+    position: relative;
+}
+
+.star-rating {
+    width:304px;
+    object-fit: cover;
+}
+
+.star-rating, .star-rating span {
+    display: inline-block;
+    height: 55px;
+    overflow: hidden;
+    background: url("/static/image/icon/star.png") no-repeat;
+}
+
+.star-rating span {
+    background-position: left bottom;
+    line-height: 0;
+    vertical-align: top;
+}
