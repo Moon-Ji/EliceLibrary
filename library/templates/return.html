@@ -7,7 +7,7 @@
         {% for book, info in zip(books, rental_info) %}
             {% if not info.end_date%}
                 <div class="book-card">
-                    <a href="/book_info/{{ info.book.id }}">
+                    <a href="/book_info/{{ info.book_id }}">
                         <img class="book-image" 
                             src="{{ book.image_path }}" 
                             alt='book_image' 
@@ -17,7 +17,7 @@
                     <p>{{ book.book_name }}</p>
                     <p>{{ book.rating }}</p>
                     <p>{{ info.start_date }}</p>
-                    <a href="{{ url_for('return_book', book_id=book.id, info_id=info.id) }}">
+                    <a href="{{ url_for('main.return_book', book_id=book.id, info_id=info.id) }}">
                         <button >반납하기</button>
                     </a>
                 </div>

@@ -24,7 +24,7 @@ class Book(db.Model):
     stock = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer)
 
-    rentals = db.relationship('RentalInfo',backref='Book')
+    rentals = db.relationship('Rental',backref='Book')
     
 class Review(db.Model):
     __tablename__ = 'Review'
@@ -36,8 +36,8 @@ class Review(db.Model):
     content = db.Column(db.Text())
     post_date = db.Column(db.String(50))
 
-class RentalInfo(db.Model):
-    __tablename__ = 'RentalInfo'
+class Rental(db.Model):
+    __tablename__ = 'Rental'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     user_id = db.Column(db.String(50), nullable=False)
