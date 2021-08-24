@@ -7,7 +7,7 @@
         {% for book, info in zip(books, rental_info) %}
             {% if not info.end_date%}
                 <div class="book-card">
-                    <a href="/book_info/{{ book.id }}">
+                    <a href="/book_info/{{ info.book.id }}">
                         <img class="book-image" 
                             src="{{ book.image_path }}" 
                             alt='book_image' 

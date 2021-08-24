@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}메인 페이지{% endblock %}
+
+{% block page_content %}
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script>
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+    {%endwith%}
+
     <form method='post'>
         <input placeholder="이름" name="name" type="text">
         <input placeholder="이메일" name="id" type="text">
@@ -14,6 +19,6 @@
         <input placeholder="비밀번호 확인" name="check_password" type="password">
         <input type="submit" value="회원가입"/>
     </form>
-    
-</body>
-</html>
+
+    <a href="signup">회원가입</a>
+{% endblock %}

@@ -3,6 +3,14 @@
 {% block title %}메인 페이지{% endblock %}
 
 {% block page_content %}
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script>
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+    {%endwith%}
+
     <div class='bookcard-container'>
         {% for book in books %}
             <div class="book-card">
@@ -13,7 +21,9 @@
                     >
                 </a>
                 
-                <p>{{ book.book_name }}</p>
+                <a href="/book_info/{{ book.id }}">
+                    <p>{{ book.book_name }}</p>
+                </a>
                 <p>{{ book.rating }}</p>
                 <p>{{ book.stock }}권 남음</p>
                 <a href="{{ url_for('rent_book', book_id=book.id) }}">
