@@ -1,8 +1,5 @@
-from typing_extensions import ParamSpecArgs
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.datastructures import Authorization
-
-db = SQLAlchemy()
+from app import db
+from sqlalchemy.orm import relationship
 
 class User(db.Model):
     __tablename__ = "User"
@@ -26,6 +23,8 @@ class Book(db.Model):
     image_path = db.Column(db.String(255))
     stock = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer)
+
+    rentals = db.relationship('RentalInfo',backref='Book')
     
 class Review(db.Model):
     __tablename__ = 'Review'
@@ -41,7 +40,8 @@ class RentalInfo(db.Model):
     __tablename__ = 'RentalInfo'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
-    book_id = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.String(50), nullable=False)
     start_date = db.Column(db.String(50), nullable=False)
     end_date = db.Column(db.String(50))
+
+    book_id = db.Column(db.Integer, db.ForeignKey('Book.id'), nullable=False)
