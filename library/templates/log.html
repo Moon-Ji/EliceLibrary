@@ -4,20 +4,32 @@
 
 {% block page_content %}
     <div class='bookcard-container'>
-        {% for book, info in zip(books, rental_info) %}
+        {% for info in rental_info %}
             {% if info.end_date%}
                 <div class="book-card">
-                    <a href="/book_info/{{ book.id }}">
+                    <a href="/book_info/{{ info.book.id }}">
                         <img class="book-image" 
-                            src="{{ book.image_path }}" 
+                            src="{{ info.book.image_path }}" 
                             alt='book_image' 
                         >
                     </a>
                     
-                    <p>{{ book.book_name }}</p>
-                    <p>{{ book.rating }}</p>
-                    <p>{{ info.start_date }}</p>
-                    <p>{{ info.end_date }}</p>
+                    <a href="/book_info/{{ info.book.id }}">
+                        {{ info.book.book_name }}
+                    </a>
+                    <div class="star-rating-container">
+                        <div class="star-ratings">
+                            <div 
+                                class="star-ratings-fill space-x-2 text-lg"
+                            style="width:{{info.book.rating * 20}}%">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <div class="star-ratings-base space-x-2 text-lg">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="book-rent-date">{{ info.start_date }}<br>~ {{ info.end_date }}</p>
 
                 </div>
             {% endif %}

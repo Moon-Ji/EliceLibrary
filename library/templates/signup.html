@@ -11,14 +11,21 @@
             </script>
         {%endif%}
     {%endwith%}
-
-    <form method='post'>
-        <input placeholder="이름" name="name" type="text">
-        <input placeholder="이메일" name="id" type="text">
-        <input placeholder="비밀번호" name="password" type="password">
-        <input placeholder="비밀번호 확인" name="check_password" type="password">
-        <input type="submit" value="회원가입"/>
-    </form>
-
-    <a href="signup">회원가입</a>
+    <div class="form-container">
+        <form method='post'>
+            <div class="form">
+                <input placeholder="이름" name="name" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="이메일" name="id" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="비밀번호" name="password" type="password">
+            </div>
+            <div class="form">
+                <input placeholder="비밀번호 확인" name="check_password" type="password">
+            </div>
+            <input class="form-button" type="submit" value="회원가입"/>
+        </form>
+    </div>
 {% endblock %}

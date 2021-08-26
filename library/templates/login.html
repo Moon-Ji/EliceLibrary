@@ -12,13 +12,19 @@
         {%endif%}
     {%endwith%}
 
-    <form method='post'>
-        <input placeholder="Email" name="id" type="text">
-        <input placeholder="Password" name="password" type="password">
-        <input type="submit" value="로그인"/>
-    </form>
+    <div class="form-container">
+        <form method='post'>
+            <div class="form">
+                <input placeholder="Email" type="email" name="id" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="Password" name="password" type="password">
+            </div>
+            <input class="form-button" type="submit" value="로그인"/>
+        </form>
 
-    <a href="signup">회원가입</a>
+        <a href="signup">회원가입</a>
+    </div>
 {% endblock %}
 
 

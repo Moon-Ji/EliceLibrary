@@ -10,7 +10,7 @@
             </script>
         {%endif%}
     {%endwith%}
-
+    <div class="wrapper">
     <div class='bookcard-container'>
         {% for book in books %}
             <div class="book-card">
@@ -22,15 +22,28 @@
                 </a>
                 
                 <a href="/book_info/{{ book.id }}">
-                    <p>{{ book.book_name }}</p>
+                    {{ book.book_name }}
                 </a>
-                <p>{{ book.rating }}</p>
-                <p>{{ book.stock }}권 남음</p>
+
+                <div class="star-rating-container">
+                    <div class="star-ratings">
+                        <div 
+                            class="star-ratings-fill space-x-2 text-lg"
+                        style="width:{{book.rating * 20}}%">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <div class="star-ratings-base space-x-2 text-lg">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="book-stock">{{ book.stock }}권 남음</p>
                 <a href="{{ url_for('main.rent_book', book_id=book.id) }}">
-                    <button >대여하기</button>
+                    <button class="button">대여하기</button>
                 </a>
             </div>
         {% endfor %}
     </div>
-
+    </div>
 {% endblock %}
