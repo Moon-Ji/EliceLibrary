@@ -4,9 +4,10 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://kdt:kdt_password@localhost:3306/library"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://kdt:kdt_password@localhost:3306/library?charset=utf8mb4"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 db.init_app(app)
 
 app.config['SESSION_TYPE'] = 'filesystem'
