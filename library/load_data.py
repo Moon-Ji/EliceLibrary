@@ -1,8 +1,8 @@
 import csv
 from datetime import date, datetime
 
-from library.app import db
-from library.model.model import Book
+from app import db
+from model.model import Book
 
 session = db.session
 
@@ -14,10 +14,10 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
 			row['publication_date'], '%Y-%m-%d').date()
         image_path = f"static/image/book_img/{row['id']}"
         try:
-            open(f'library/{image_path}.png')
-            image_path = f"../static/image/book_img/{row['id']}.png"
+            open(f'{image_path}.png')
+            image_path = f"static/image/book_img/{row['id']}.png"
         except:
-            image_path = f"../static/image/book_img/{row['id']}.jpg"
+            image_path = f"static/image/book_img/{row['id']}.jpg"
 
 
         book = Book(
