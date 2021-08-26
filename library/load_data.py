@@ -15,9 +15,9 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
         image_path = f"static/image/book_img/{row['id']}"
         try:
             open(f'{image_path}.png')
-            image_path = f"static/image/book_img/{row['id']}.png"
+            image_path = f"../static/image/book_img/{row['id']}.png"
         except:
-            image_path = f"static/image/book_img/{row['id']}.jpg"
+            image_path = f"../static/image/book_img/{row['id']}.jpg"
 
 
         book = Book(
