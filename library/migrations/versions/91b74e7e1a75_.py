@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1b7096ae500e
+Revision ID: 91b74e7e1a75
 Revises: 
-Create Date: 2021-08-26 23:56:12.244280
+Create Date: 2021-08-27 00:10:15.630295
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '1b7096ae500e'
+revision = '91b74e7e1a75'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,10 +23,10 @@ def upgrade():
     sa.Column('book_name', sa.String(length=255), nullable=False),
     sa.Column('publisher', sa.String(length=255), nullable=False),
     sa.Column('author', sa.String(length=255), nullable=False),
-    sa.Column('publication_date', sa.String(), nullable=False),
+    sa.Column('publication_date', sa.String(length=50), nullable=False),
     sa.Column('pages', sa.Integer(), nullable=True),
     sa.Column('isbn', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.Column('link', sa.String(length=255), nullable=True),
     sa.Column('image_path', sa.String(length=255), nullable=True),
     sa.Column('stock', sa.Integer(), nullable=False),
@@ -58,9 +58,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.drop_table('user')
     op.drop_table('review')
     op.drop_table('rental')
-    op.drop_table('user')
     op.drop_table('book')
     # ### end Alembic commands ###
 
@@ -80,15 +80,6 @@ def downgrade():
     sa.Column('image_path', mysql.VARCHAR(length=255), nullable=True),
     sa.Column('stock', mysql.INTEGER(), autoincrement=False, nullable=False),
     sa.Column('rating', mysql.INTEGER(), autoincrement=False, nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    mysql_collate='utf8mb4_0900_ai_ci',
-    mysql_default_charset='utf8mb4',
-    mysql_engine='InnoDB'
-    )
-    op.create_table('user',
-    sa.Column('id', mysql.VARCHAR(length=50), nullable=False, comment='id(email)'),
-    sa.Column('password', mysql.VARCHAR(length=255), nullable=False, comment='password'),
-    sa.Column('name', mysql.VARCHAR(length=50), nullable=False, comment='user name'),
     sa.PrimaryKeyConstraint('id'),
     mysql_collate='utf8mb4_0900_ai_ci',
     mysql_default_charset='utf8mb4',
@@ -114,6 +105,15 @@ def downgrade():
     sa.Column('content', mysql.TEXT(), nullable=False),
     sa.Column('post_date', sa.DATE(), nullable=False),
     sa.ForeignKeyConstraint(['book_id'], ['book.id'], name='review_ibfk_1'),
+    sa.PrimaryKeyConstraint('id'),
+    mysql_collate='utf8mb4_0900_ai_ci',
+    mysql_default_charset='utf8mb4',
+    mysql_engine='InnoDB'
+    )
+    op.create_table('user',
+    sa.Column('id', mysql.VARCHAR(length=50), nullable=False, comment='id(email)'),
+    sa.Column('password', mysql.VARCHAR(length=255), nullable=False, comment='password'),
+    sa.Column('name', mysql.VARCHAR(length=50), nullable=False, comment='user name'),
     sa.PrimaryKeyConstraint('id'),
     mysql_collate='utf8mb4_0900_ai_ci',
     mysql_default_charset='utf8mb4',
