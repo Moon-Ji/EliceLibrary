@@ -18,7 +18,7 @@ class Book(db.Model):
     author = db.Column(db.String(255), nullable=False)
     publication_date = db.Column(db.String(50), nullable=False)
     pages = db.Column(db.Integer)
-    isbn = db.Column(db.Integer, nullable=False)
+    isbn = db.Column(db.String(12), nullable=False)
     description = db.Column(db.Text())
     link = db.Column(db.String(255))
     image_path = db.Column(db.String(255))
