@@ -35,7 +35,7 @@ class Review(db.Model):
     rating = db.Column(db.Integer)
     content = db.Column(db.Text())
     post_date = db.Column(db.String(50))
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    user_id = db.Column(db.String(50), db.ForeignKey('User.id'), nullable=False)
 
 class Rental(db.Model):
     __tablename__ = 'Rental'
