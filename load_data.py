@@ -1,8 +1,8 @@
 import csv
 from datetime import date, datetime
 
-from app import db
-from model.model import Book
+from library.app import db
+from library.model.model import Book
 
 session = db.session
 
