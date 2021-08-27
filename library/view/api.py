@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, url_for, session, flash
 from sqlalchemy.sql.elements import Null
 from werkzeug.utils import redirect
 from bcrypt import hashpw, checkpw, gensalt
-from datetime import date, datetime
+import datetime
 import re
 
 bp = Blueprint('main', __name__)
