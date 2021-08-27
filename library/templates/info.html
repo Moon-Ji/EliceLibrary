@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}책 정보{% endblock %}
+{% block title %}{{ book.book_name }}{% endblock %}
 
 {% block page_content %}
 
@@ -54,6 +54,12 @@
 
             {% if session['id'] %} 
                 <form method="post">
+                    <input 
+                    type="textarea"
+                    placeholder="리뷰를 작성하세요." 
+                    name="content" 
+                    style="width:700px;height:50px;font-size:15px;margin-left:10px;"
+                    />
                     <select name="star">
                         <option value="1">1점</option>
                         <option value="2">2점</option>
@@ -61,11 +67,6 @@
                         <option value="4">4점</option>
                         <option value="5" selected>5점</option>
                     </select>
-                    <input 
-                        placeholder="댓글 달기" 
-                        name="content" 
-                        style="width:700px;height:100px;font-size:15px;"
-                    />
                     <input type="submit" value="작성하기" class="button" >
                 </form>
             {% endif %}

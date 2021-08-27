@@ -23,6 +23,11 @@ def signup():
 
         id_check = re.compile('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
         pw_check = re.compile('^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$')
+        name_check = re.compile('^[a-z|A-Z|가-힣]+$')
+
+        if name_check.search(name) == None:
+            flash("이름은 한글과 영문만 가능합니다.")
+            return render_template("signup.html")
 
         if not id_check.match(id):
             flash("올바른 이메일을 입력하세요.")

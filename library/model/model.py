@@ -7,7 +7,7 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(50), nullable=False)
 
-    reviews = db.relationship('Review',backref='user')
+    reviews = db.relationship('Review', backref='user')
 
 class Book(db.Model):
     __tablename__ = "Book"
