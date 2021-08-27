@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, url_for, session, flash
 from sqlalchemy.sql.elements import Null
 from werkzeug.utils import redirect
 from bcrypt import hashpw, checkpw, gensalt
-from datetime import datetime
+from datetime import date, datetime
 import re
 
 bp = Blueprint('main', __name__)
@@ -24,14 +24,19 @@ def book_info(book_id):
 
         return render_template('info.html', book=book, reviews=book_reviews)
         
+        
     elif request.method == 'POST':
+
+        utcnow= datetime.datetime.utcnow()
+        time_gap= datetime.timedelta(hours=9)
+        kor_time= utcnow+ time_gap
 
         review = Review(
             book_id=book_id, 
             user_id=session['id'], 
             rating=int(request.form['star']), 
             content=request.form['content'], 
-            post_date=datetime.now()
+            post_date=kor_time
         )
 
         if not request.form['star'] or not request.form['content']:
@@ -92,11 +97,14 @@ def rent_book(book_id):
         return redirect('/')
     else:
         book.stock -= 1
+        utcnow= datetime.datetime.utcnow()
+        time_gap= datetime.timedelta(hours=9)
+        kor_time= utcnow+ time_gap
 
         rental_info = Rental(
             book_id=book_id, 
             user_id=session['id'],
-            start_date=datetime.now()
+            start_date=kor_time
             )
         db.session.add(rental_info)
         db.session.commit()
@@ -120,7 +128,11 @@ def return_book(info_id):
     info = db.session.query(Rental).filter(Rental.id == info_id).first()
     book = db.session.query(Book).filter(Book.id == info.book_id).first()
 
-    info.end_date = datetime.now()
+    utcnow= datetime.datetime.utcnow()
+    time_gap= datetime.timedelta(hours=9)
+    kor_time= utcnow+ time_gap
+
+    info.end_date = kor_time
     book.stock += 1
     db.session.commit()
 
