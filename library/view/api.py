@@ -30,13 +30,13 @@ def book_info(book_id):
         utcnow= datetime.datetime.utcnow()
         time_gap= datetime.timedelta(hours=9)
         kor_time= utcnow+ time_gap
-
+        now_str_date = kor_time.strftime('%Y-%m-%d')
         review = Review(
             book_id=book_id, 
             user_id=session['id'], 
             rating=int(request.form['star']), 
             content=request.form['content'], 
-            post_date=kor_time
+            post_date=now_str_date
         )
 
         if not request.form['star'] or not request.form['content']:
@@ -100,11 +100,11 @@ def rent_book(book_id):
         utcnow= datetime.datetime.utcnow()
         time_gap= datetime.timedelta(hours=9)
         kor_time= utcnow+ time_gap
-
+        now_str_date = kor_time.strftime('%Y-%m-%d')
         rental_info = Rental(
             book_id=book_id, 
             user_id=session['id'],
-            start_date=kor_time
+            start_date=now_str_date
             )
         db.session.add(rental_info)
         db.session.commit()
@@ -131,8 +131,9 @@ def return_book(info_id):
     utcnow= datetime.datetime.utcnow()
     time_gap= datetime.timedelta(hours=9)
     kor_time= utcnow+ time_gap
-
-    info.end_date = kor_time
+    now_str_date = kor_time.strftime('%Y-%m-%d')
+    
+    info.end_date = now_str_date
     book.stock += 1
     db.session.commit()
 
