@@ -49,10 +49,6 @@ def signup():
             flash("비밀번호가 일치하지 않습니다.")
             return render_template("signup.html")
 
-        elif len(password) < 8:
-            flash("비밀번호를 8자리 이상 입력하세요.")
-            return render_template("signup.html")
-
         else:
             pw_hash = hashpw(password.encode('utf-8'), gensalt())
             user = User(
@@ -75,7 +71,12 @@ def login():
 
         user_data = User.query.filter_by(id=id).first()
 
-        if not id or not password:
+        id_check = re.compile('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
+        
+        if not id_check.match(id):
+            flash("올바른 이메일을 입력하세요.")
+            return render_template("signup.html")
+        elif not id or not password:
             flash("모든 입력창을 채우세요.")
             return render_template('login.html')
         elif not user_data:
