@@ -1,62 +1,320 @@
+/*----- navbar -----*/
 .navbar {
     width: 100%;
-    height: 40px;
-    background-color: rgb(237, 240, 241);
-    margin-bottom: 10px;
-    border: 2px solid rgb(130, 136, 139);
+    margin-bottom: 20px;
+
+    background-color: white;
+    padding: 20px;
+    justify-content: space-between;
 }
 
 .navbar-container {
     display: inline;
+    vertical-align: middle;
+}
+
+.nav-title {
+    display: inline;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-weight: bold;
+    color: #434c53;
 }
 
 .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
     float: right;
 }
 
-.book-card {
-    display: inline-block;
-    margin-left: 30px;
-    margin-top: 50px;
-    border: 1px solid black;
-    box-sizing: border-box;
-    width: 296px;
-    height: 407px;
+.nav-item {
+    display: block;
     text-align: center;
+    margin: .5rem;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #545252;
+}
+
+.nav-link {
+    text-decoration-line: none;
+    color: #545252;
+}
+
+/*----- book card -----*/
+.book-card {
+    position: relative;
+    background: white;
+    display: inline-block;
+    margin: 50px 30px 0 30px;
+    padding: 10px 15px 10px 15px;
+    border: 4px solid #edeff0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 300px;
+    height: 450px;
+    text-align: center;
+}
+
+.book-card a {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    color: #545252;
 }
 
 .book-card p {
     font-size: 15px;
     margin-top: 2px;
     margin-bottom: 2px;
+    color: #545252;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
-
 .book-image {
-    width: 200px;
-    height: 250px;
+    position: relative;
+    top: 20px;
+    width: 190px;
+    height: 190px;
     object-fit: contain;
-    margin-bottom: 20px;
+    margin: 0 0 45px 0;
+
+    border-radius: 3px;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0px 0px 8px rgb(199, 204, 207);
+    
+}
+
+.book-stock {
+    bottom: 70px;
+}
+
+.book-rent-date {
+    bottom: 50px;
+}
+
+.book-start-date {
+    bottom: 70px;
 }
 
 .bookcard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 4fr));
+    grid-column-gap: 20px;
+    justify-items: center; 
     position: relative;
+    font-weight: bold;
+    width: 100vw;
+    height: 100vh;
 }
 
-.star-rating {
-    width:304px;
-    object-fit: cover;
+.book-card .button {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    width: 120px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px 0 0 2px;
+
+    background-color: rgb(166, 193, 219);
+    border-radius: 5px;
+    color: white;
+
+    border: 0;
+    outline: 0;
+
+    box-shadow: 2px 2px 4px rgb(152, 162, 168);
 }
 
-.star-rating, .star-rating span {
-    display: inline-block;
-    height: 55px;
+/*----- book info -----*/
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-info-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center; 
+    border: 2px solid #edeff0;
+    background: white;
+    width: 1000px;
+    padding: 20px;
+}
+
+.book-info {
+    border: 3px solid #edeff0;
+    width: 550px;
+    margin: 20px 10px 10px 10px;
+    padding: 20px;
+    color: #545252;
+    font-weight: bold;
+}
+
+.book-info-image {
+    position: relative;
+    top: 20px;
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+    margin: 20px;
+
+    border-radius: 3px;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0px 0px 8px rgb(199, 204, 207);
+}
+
+.book-desc {
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    border: 3px solid #edeff0;
+    padding: 15px 30px 15px 30px;
+    margin: 10px 20px 10px 20px;
+    font-size: 17px;
+    color: #545252;
+}
+
+.book-reviews {
+    position: relative;
+    grid-column: 1/3;
+    grid-row: 3/4;
+
+    border: 3px solid #edeff0;
+
+    padding: 15px 20px 15px 20px;
+    margin: 10px 20px 10px 20px;
+    width: 908px;
+
+}
+
+.review {
+    border: 3px solid #edeff0;
+    margin: 5px 5px 5px 5px;
+}
+
+.button {
+    width: 120px;
+    height: 38px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px 0 0 2px;
+
+    background-color: rgb(166, 193, 219);
+    border-radius: 5px;
+    color: white;
+
+    border: 0;
+    outline: 0;
+
+    box-shadow: 2px 2px 4px rgb(152, 162, 168);
+}
+
+/*----- login, signup -----*/
+.form {
+    width: 100%;
+}
+
+.form input {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(152, 162, 168);
+    border-radius: 5px;
+    border: 2px solid #d9dee0;
+
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+    width: 300px;
+    height: 40px;
+}
+
+.form-button {
+    width: 310px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px;
+
+    background-color: rgb(166, 193, 219);
+    border-radius: 5px;
+    color: white;
+
+    border: 0;
+    outline: 0;
+}
+
+.form-container a {
+    color: #545252;
+    font-weight: bold;
+
+    margin-top: 100px;
+}
+
+.form-container {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    padding-top: 100px;
+}
+
+/*----- star rating -----*/
+
+.star-ratings {
+    color: #aaa9a9; 
+    position: relative;
+    unicode-bidi: bidi-override;
+    width: max-content;
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1.3px;
+    -webkit-text-stroke-color: #3a719e;
+}
+    
+.star-ratings-fill {
+    color: #fff58c;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    top: 0;
+    left: 0;
     overflow: hidden;
-    background: url("/static/image/icon/star.png") no-repeat;
+    -webkit-text-fill-color: rgb(96, 155, 202);
 }
 
-.star-rating span {
-    background-position: left bottom;
-    line-height: 0;
-    vertical-align: top;
+.star-ratings-base {
+    z-index: 0;
+    padding: 0;
 }
+
+.star-rating-container {
+    position:absolute;
+    left: 50%;
+    bottom: 103px;
+    transform: translate(-50%, 0%);
+}
+
+body {
+    margin: 0;
+    padding: 5px 0 30px 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    background: #f7f9fa;
+}
+

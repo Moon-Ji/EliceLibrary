@@ -14,7 +14,7 @@ with open('library.csv', 'r', encoding='UTF-8') as f:
 			row['publication_date'], '%Y-%m-%d').date()
         image_path = f"static/image/book_img/{row['id']}"
         try:
-            open(f'library/{image_path}.png')
+            open(f'{image_path}.png')
             image_path = f"../static/image/book_img/{row['id']}.png"
         except:
             image_path = f"../static/image/book_img/{row['id']}.jpg"

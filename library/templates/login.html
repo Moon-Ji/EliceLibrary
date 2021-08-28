@@ -1,19 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method='post'>
-        <input placeholder="Email" name="id" type="text">
-        <input placeholder="Password" name="password" type="password">
-        <input type="submit" value="로그인"/>
-    </form>
+{% extends "base.html" %}
 
-    <a href="signup">회원가입</a>
-    
-</body>
-</html>
+{% block title %}로그인{% endblock %}
+
+{% block page_content %}
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script>
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+    {%endwith%}
+
+    <div class="form-container">
+        <form method='post'>
+            <div class="form">
+                <input placeholder="Email" type="email" name="id" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="Password" name="password" type="password">
+            </div>
+            <input class="form-button" type="submit" value="로그인"/>
+        </form>
+
+        <a href="signup">회원가입</a>
+    </div>
+{% endblock %}
+
+

@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}책 정보{% endblock %}
+{% block title %}{{ book.book_name }}{% endblock %}
 
 {% block page_content %}
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script>
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+    {%endwith%}
+
     {% if book %}
-    <div>
-        <img class="book-image" src="{{ book.image_path }}" alt='book_image'>
-        <div>
+    <div class="wrapper">
+    <div class="book-info-container">
+        <img class="book-info-image" src="{{ book.image_path }}" alt='book_image'>
+        <div class="book-info">
             <p>책 이름: {{ book.book_name }}</p>
             <p>출판사: {{ book.publisher }}</p>
             <p>저자: {{ book.author }}</p>
@@ -15,39 +25,54 @@
             <p>ISBN 코드: {{ book.isbn }}</p>
         </div>
 
-        <div>
-            <p>책 소개: {{ book.description }}</p>
-
+        
+        <div class="book-desc">
+            <p>책 소개</p>
+            <p style="white-space:pre-wrap;">{{ book.description }}</p>
         </div>
 
-        <div>
+        <div class="book-reviews">
             <p>댓글</p>
             {% for review in reviews %}
-                <p> {{ review.user_id }}</p>
+                <div class="review">
+                <p> {{ review.user.name }} {{review.post_date }}</p>
                 <p> {{ review.content }}</p>
-                <p> {{ review.rating }}</p>
-                <span class="star-rating">
-                    <span></span>
-                </span>
+                <div class="star-ratings">
+                    <div 
+                        class="star-ratings-fill space-x-2 text-lg"
+                    style="width:{{review.rating * 20}}%">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-base space-x-2 text-lg">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                </div>
+                </div>
             {% endfor %}
             <p></p>
-        </div>
 
-        {% if session['id'] %} 
-            <form method="post">
-                <select name="star">
-                    <option value="1">1점</option>
-                    <option value="2">2점</option>
-                    <option value="3">3점</option>
-                    <option value="4">4점</option>
-                    <option value="5" selected>5점</option>
-                </select>
-                <input placeholder="댓글 달기" name="content"/>
-                <input type="submit" value="작성하기" >
-            </form>
-        {% endif %}
+
+            {% if session['id'] %} 
+                <form method="post">
+                    <input 
+                    type="textarea"
+                    placeholder="리뷰를 작성하세요." 
+                    name="content" 
+                    style="width:700px;height:50px;font-size:15px;margin-left:10px;"
+                    />
+                    <select name="star">
+                        <option value="1">1점</option>
+                        <option value="2">2점</option>
+                        <option value="3">3점</option>
+                        <option value="4">4점</option>
+                        <option value="5" selected>5점</option>
+                    </select>
+                    <input type="submit" value="작성하기" class="button" >
+                </form>
+            {% endif %}
+        </div>
     </div>
-    
+    </div>
     
 
 

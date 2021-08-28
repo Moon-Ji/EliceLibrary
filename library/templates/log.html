@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}반납하기{% endblock %}
+{% block title %}대여 기록{% endblock %}
 
 {% block page_content %}
     <div class='bookcard-container'>
         {% for info in rental_info %}
-            {% if not info.end_date%}
+            {% if info.end_date%}
                 <div class="book-card">
                     <a href="/book_info/{{ info.book.id }}">
                         <img class="book-image" 
@@ -29,10 +29,8 @@
                             </div>
                         </div>
                     </div>
-                    <p class="book-start-date">{{ info.start_date }}</p>
-                    <a href="{{ url_for('main.return_book', info_id=info.id) }}">
-                        <button class="button">반납하기</button>
-                    </a>
+                    <p class="book-rent-date">{{ info.start_date }}<br>~ {{ info.end_date }}</p>
+
                 </div>
             {% endif %}
         {% endfor %}

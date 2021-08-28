@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method='post'>
-        <input placeholder="이름" name="name" type="text">
-        <input placeholder="이메일" name="id" type="text">
-        <input placeholder="비밀번호" name="password" type="password">
-        <input placeholder="비밀번호 확인" name="check_password" type="password">
-        <input type="submit" value="회원가입"/>
-    </form>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}회원가입{% endblock %}
+
+{% block page_content %}
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <script>
+                alert("{{messages[-1]}}");
+            </script>
+        {%endif%}
+    {%endwith%}
+    <div class="form-container">
+        <form method='post'>
+            <div class="form">
+                <input placeholder="이름" name="name" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="이메일" name="id" type="text">
+            </div>
+            <div class="form">
+                <input placeholder="비밀번호" name="password" type="password">
+            </div>
+            <div class="form">
+                <input placeholder="비밀번호 확인" name="check_password" type="password">
+            </div>
+            <input class="form-button" type="submit" value="회원가입"/>
+        </form>
+    </div>
+{% endblock %}
