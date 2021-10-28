@@ -4,11 +4,12 @@
 ### 기간
 - 2021.08.16 ~ 2021.08.27 (2주)
 ### 기술 스택
-- Flask, SQLAlchemy, MySQL, Jinja2
+- <img src="https://img.shields.io/badge/-Flask-black?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-MySQL-#4479A1?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-Jinja-##B41717?style=for-the-badge&logo=flask&logoColor=white"/>
 
 ### 프로젝트 실행
 /library Flask run
 
+------------------------------------------------------------
 ### [구현 기능](https://github.com/Moon-Ji/LibraryLoan/wiki/%EA%B5%AC%ED%98%84-%EA%B8%B0%EB%8A%A5)
 
 ### 디렉토리 구조
