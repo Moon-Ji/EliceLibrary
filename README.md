@@ -4,7 +4,9 @@
 ### 기간
 - 2021.08.16 ~ 2021.08.27 (2주)
 ### 기술 스택
-- <img src="https://img.shields.io/badge/-Flask-black?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-MySQL-#4479A1?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-Jinja-##B41717?style=for-the-badge&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Flask-black?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-mysql-4479A1?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/-jinja-B41717?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+
+출처: https://byul91oh.tistory.com/214 [개발하는 감자 [: 개감]]
 
 ### 프로젝트 실행
 /library Flask run
